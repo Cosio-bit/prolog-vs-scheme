@@ -24,8 +24,11 @@ Fuente: "PUNTAJES SEMANA INFORMÁTICA 2026" (en el Drive de Andrea; buscarla por
 - ACTIVIDADES: 1er/2do lugar según la pestaña. Las actividades "por unidad" se mantienen:
   El que se la sabe (5 pts por canción), Quiz (5 pts por pregunta),
   Concurso de talentos (30 por participante), Cuecatón (30 por pareja).
-- RETOS IMPOSIBLES: usar la tabla PONDERADA (columnas B/C de arriba, ej. STRAVA 61 / 48),
-  NO la tabla original de más abajo.
+- RETOS IMPOSIBLES: la fuente final es la hoja "PUNTAJES RETOS IMPOSIBLES" (Drive de Andrea).
+  Pestaña PUNTAJES = puntos 1er/2do lugar (valores originales, ej. STRAVA 100 / 50).
+  Pestaña GANADOS = un "1" por alianza en cada reto que hizo.
+  PENDIENTE: no está claro si "1" = primer lugar o solo "lo hicieron". Hasta que Andrea
+  lo aclare, NO sumar retos al marcador.
 - Categorías a usar: Deportes, Videojuegos, Actividades, Retos.
 
 ## Flujo de trabajo
