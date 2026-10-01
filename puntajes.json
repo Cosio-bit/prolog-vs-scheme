@@ -95,6 +95,14 @@
       "scheme": 40,
       "detalle": "Total: Scheme 207 vs Prolog 161 (4 vs 4)",
       "categoria": "Deportes"
+    },
+    {
+      "actividad": "Valorant",
+      "fecha": "",
+      "prolog": 15,
+      "scheme": 135,
+      "detalle": "1° Los six seven (Scheme) · 2° Schemen (Scheme) · 3° ART4RUSGAN (Prolog)",
+      "categoria": "Videojuegos"
     }
   ],
   "juegos": [
@@ -110,54 +118,50 @@
     },
     {
       "nombre": "Valorant",
-      "estado": "En curso",
-      "podio": [],
-      "partidas": [
+      "estado": "Terminado",
+      "podio": [
         {
-          "a": "Schemen",
-          "aliA": "Scheme",
-          "b": "ART4RUSGAN",
-          "aliB": "Prolog",
-          "resultado": "13 – 3"
+          "equipo": "Los six seven",
+          "alianza": "Scheme"
         },
         {
-          "a": "Schemen",
-          "aliA": "Scheme",
-          "b": "Los six seven",
-          "aliB": "Scheme",
-          "resultado": "9 – 13"
+          "equipo": "Schemen",
+          "alianza": "Scheme"
         },
         {
-          "a": "ART4RUSGAN",
-          "aliA": "Prolog",
-          "b": "Los six seven",
-          "aliB": "Scheme",
-          "resultado": "1 – 13"
+          "equipo": "ART4RUSGAN",
+          "alianza": "Prolog"
         }
       ],
       "tabla": {
         "columnas": [
           "Equipo",
-          "G",
           "P",
-          "Pts"
+          "W",
+          "L",
+          "RG",
+          "PTS"
         ],
         "filas": [
           {
             "alianza": "Scheme",
             "celdas": [
               "Los six seven",
-              "1",
+              "2",
+              "2",
               "0",
-              "1"
+              "26",
+              "2"
             ]
           },
           {
             "alianza": "Scheme",
             "celdas": [
               "Schemen",
+              "2",
               "1",
               "1",
+              "22",
               "0"
             ]
           },
@@ -165,40 +169,69 @@
             "alianza": "Prolog",
             "celdas": [
               "ART4RUSGAN",
+              "2",
               "0",
-              "1",
-              "-1"
-            ]
-          },
-          {
-            "alianza": "Prolog",
-            "celdas": [
-              "21068 pilotos",
-              "–",
-              "–",
-              "–"
-            ]
-          },
-          {
-            "alianza": "Scheme",
-            "celdas": [
-              "BETANORANT",
-              "–",
-              "–",
-              "–"
-            ]
-          },
-          {
-            "alianza": "Prolog",
-            "celdas": [
-              "Chanchitas Lindas",
-              "–",
-              "–",
-              "–"
+              "2",
+              "4",
+              "-2"
             ]
           }
         ]
-      }
+      },
+      "rondas": [
+        {
+          "titulo": "Primera ronda",
+          "partidas": [
+            {
+              "a": "Schemen",
+              "aliA": "Scheme",
+              "b": "21068 pilotos",
+              "aliB": "Prolog",
+              "resultado": "pasa Schemen"
+            },
+            {
+              "a": "BETANORANT",
+              "aliA": "Scheme",
+              "b": "ART4RUSGAN",
+              "aliB": "Prolog",
+              "resultado": "pasa ART4RUSGAN"
+            },
+            {
+              "a": "Los six seven",
+              "aliA": "Scheme",
+              "b": "Chanchitas Lindas",
+              "aliB": "Prolog",
+              "resultado": "pasa Los six seven"
+            }
+          ]
+        },
+        {
+          "titulo": "Tabla final",
+          "partidas": [
+            {
+              "a": "Schemen",
+              "aliA": "Scheme",
+              "b": "ART4RUSGAN",
+              "aliB": "Prolog",
+              "resultado": "13 – 3"
+            },
+            {
+              "a": "Schemen",
+              "aliA": "Scheme",
+              "b": "Los six seven",
+              "aliB": "Scheme",
+              "resultado": "9 – 13"
+            },
+            {
+              "a": "ART4RUSGAN",
+              "aliA": "Prolog",
+              "b": "Los six seven",
+              "aliB": "Scheme",
+              "resultado": "1 – 13"
+            }
+          ]
+        }
+      ]
     },
     {
       "nombre": "FC26",

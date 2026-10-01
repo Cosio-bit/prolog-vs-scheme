@@ -47,7 +47,10 @@ Formato de `puntajes.json`:
  "juegos": [{"nombre": "Valorant", "estado": "Terminado|En curso|Por jugar",
    "podio": ["Scheme", {"equipo": "Los six seven", "alianza": "Scheme"}],
    "tabla": {"columnas": ["Equipo", "G", "P", "Pts"], "filas": [{"alianza": "Scheme", "celdas": ["Los six seven", "1", "0", "1"]}]},
-   "partidas": [{"a": "Schemen", "aliA": "Scheme", "b": "ART4RUSGAN", "aliB": "Prolog", "resultado": "13 – 3"}]}]}
+   "partidas": [{"a": "Schemen", "aliA": "Scheme", "b": "ART4RUSGAN", "aliB": "Prolog", "resultado": "13 – 3"}],
+   "rondas": [{"titulo": "Primera ronda", "partidas": [...]}]}]}   (rondas reemplaza a partidas si existe)
+- Valorant: 1ª ronda = 3 cruces (Schemen–21068 pilotos, BETANORANT–ART4RUSGAN,
+  Los six seven–Chanchitas Lindas); los ganadores juegan una tabla final todos contra todos.
 
 ## Privacidad (regla de Andrea)
 - En la página NO puede aparecer ningún nombre de PERSONA. Los nombres de EQUIPOS sí van.
