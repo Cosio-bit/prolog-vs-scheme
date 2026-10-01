@@ -5,26 +5,146 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Prolog vs Scheme</title>
 <style>
-  :root { --bg:#0f1115; --card:#1a1d24; --text:#f2f2f2; --muted:#9aa0aa; --prolog:#e0533d; --scheme:#3d8be0; }
+  :root { --bg:#0f1115; --card:#1a1d24; --line:#2a2e37; --text:#f2f2f2; --muted:#9aa0aa; --prolog:#e0533d; --scheme:#3d8be0; }
   * { box-sizing:border-box; }
-  body { margin:0; background:var(--bg); color:var(--text); font-family:system-ui, sans-serif; text-align:center; padding:32px 16px; }
+  body { margin:0; background:var(--bg); color:var(--text); font-family:system-ui, sans-serif; padding:32px 16px; }
+  main { max-width:860px; margin:0 auto; }
+  header { text-align:center; }
   h1 { margin:0 0 4px; font-size:clamp(28px,6vw,48px); }
-  p.sub { margin:0 0 32px; color:var(--muted); }
+  h2 { margin:40px 0 12px; font-size:22px; }
+  .sub { margin:0 0 28px; color:var(--muted); }
   .marcador { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
-  .equipo { background:var(--card); border-radius:16px; padding:24px; min-width:240px; flex:1; max-width:360px; border-top:6px solid; }
+  .equipo { background:var(--card); border-radius:16px; padding:24px; flex:1 1 240px; max-width:400px; border-top:6px solid; text-align:center; position:relative; }
   .prolog { border-color:var(--prolog); } .scheme { border-color:var(--scheme); }
   .nombre { font-size:24px; font-weight:700; }
   .puntos { font-size:clamp(56px,14vw,96px); font-weight:800; font-variant-numeric:tabular-nums; }
-  .estado { margin-top:24px; color:var(--muted); font-size:14px; }
+  .corona { position:absolute; top:10px; right:14px; font-size:13px; font-weight:700; color:var(--bg); background:var(--text); border-radius:999px; padding:3px 10px; }
+  .barra { display:flex; height:12px; border-radius:999px; overflow:hidden; background:var(--line); margin:20px auto 0; max-width:816px; }
+  .barra div { transition:width .6s; }
+  .tabla { width:100%; border-collapse:collapse; background:var(--card); border-radius:12px; overflow:hidden; }
+  .tabla th, .tabla td { padding:10px 12px; text-align:left; border-bottom:1px solid var(--line); }
+  .tabla th { color:var(--muted); font-weight:600; font-size:14px; }
+  .tabla td.num { text-align:right; font-variant-numeric:tabular-nums; }
+  .tabla tr:last-child td { border-bottom:none; }
+  .detalle { display:block; color:var(--muted); font-size:13px; margin-top:2px; }
+  .chip { display:inline-block; padding:2px 10px; border-radius:999px; font-size:13px; font-weight:700; }
+  .chip.Prolog { background:var(--prolog); } .chip.Scheme { background:var(--scheme); } .chip.Empate { background:var(--line); }
+  .scroll { overflow-x:auto; }
+  .estado { margin-top:24px; text-align:center; color:var(--muted); font-size:14px; }
+  .vacio { color:var(--muted); text-align:center; padding:20px; }
 </style>
 </head>
 <body>
-  <h1>Prolog vs Scheme</h1>
-  <p class="sub">Alianzas · Semana Informática</p>
+<main>
+  <header>
+    <h1>Prolog vs Scheme</h1>
+    <p class="sub">Alianzas · Semana Informática</p>
+  </header>
+
   <div class="marcador">
-    <div class="equipo prolog"><div class="nombre">Prolog</div><div class="puntos" id="prolog">0</div></div>
-    <div class="equipo scheme"><div class="nombre">Scheme</div><div class="puntos" id="scheme">0</div></div>
+    <div class="equipo prolog"><div class="nombre">Prolog</div><div class="puntos" id="total-prolog">–</div></div>
+    <div class="equipo scheme"><div class="nombre">Scheme</div><div class="puntos" id="total-scheme">–</div></div>
   </div>
-  <p class="estado">Página en preparación</p>
+  <div class="barra"><div id="barra-prolog" style="width:50%;background:var(--prolog)"></div><div id="barra-scheme" style="width:50%;background:var(--scheme)"></div></div>
+
+  <h2>Actividades</h2>
+  <div class="scroll">
+    <table class="tabla">
+      <thead><tr><th>Actividad</th><th>Fecha</th><th>Ganador</th><th class="num">Prolog</th><th class="num">Scheme</th></tr></thead>
+      <tbody id="actividades"><tr><td colspan="5" class="vacio">Cargando…</td></tr></tbody>
+    </table>
+  </div>
+
+  <p class="estado" id="estado">Cargando puntajes…</p>
+</main>
+
+<script>
+// Hoja de Google con los puntajes. Columnas: Actividad | Fecha | Puntos Prolog | Puntos Scheme | Detalle
+const ID_HOJA = '1U4yDtoTWt2rCuAFtolP-9P-lHDLexoBsKxF2YwXAz78';
+const URL_CSV = `https://docs.google.com/spreadsheets/d/${ID_HOJA}/gviz/tq?tqx=out:csv&gid=0`;
+const CADA_SEGUNDOS = 30;
+
+function parsearCSV(texto) {
+  const filas = []; let fila = [], campo = '', comillas = false;
+  for (let i = 0; i < texto.length; i++) {
+    const c = texto[i];
+    if (comillas) {
+      if (c === '"' && texto[i + 1] === '"') { campo += '"'; i++; }
+      else if (c === '"') comillas = false;
+      else campo += c;
+    } else if (c === '"') comillas = true;
+    else if (c === ',') { fila.push(campo); campo = ''; }
+    else if (c === '\n' || c === '\r') {
+      if (c === '\r' && texto[i + 1] === '\n') i++;
+      fila.push(campo); filas.push(fila); fila = []; campo = '';
+    } else campo += c;
+  }
+  if (campo !== '' || fila.length) { fila.push(campo); filas.push(fila); }
+  return filas;
+}
+
+const numero = v => { const n = parseFloat(String(v).replace(',', '.')); return isNaN(n) ? 0 : n; };
+const escapar = s => String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+
+function leerActividades(filas) {
+  const enc = filas[0].map(h => h.trim().toLowerCase());
+  const col = nombre => enc.findIndex(h => h.includes(nombre));
+  const iAct = col('actividad'), iFecha = col('fecha'), iP = col('prolog'), iS = col('scheme'), iDet = col('detalle');
+  return filas.slice(1)
+    .map(f => ({
+      actividad: (f[iAct] || '').trim(),
+      fecha: iFecha >= 0 ? (f[iFecha] || '').trim() : '',
+      prolog: numero(f[iP]),
+      scheme: numero(f[iS]),
+      detalle: iDet >= 0 ? (f[iDet] || '').trim() : '',
+    }))
+    .filter(a => a.actividad);
+}
+
+function mostrar(actividades) {
+  const tP = actividades.reduce((s, a) => s + a.prolog, 0);
+  const tS = actividades.reduce((s, a) => s + a.scheme, 0);
+  document.getElementById('total-prolog').textContent = tP;
+  document.getElementById('total-scheme').textContent = tS;
+  const pct = tP + tS ? (tP / (tP + tS)) * 100 : 50;
+  document.getElementById('barra-prolog').style.width = pct + '%';
+  document.getElementById('barra-scheme').style.width = (100 - pct) + '%';
+
+  document.querySelectorAll('.corona').forEach(e => e.remove());
+  if (tP !== tS) {
+    const lider = document.querySelector(tP > tS ? '.equipo.prolog' : '.equipo.scheme');
+    lider.insertAdjacentHTML('beforeend', '<span class="corona">Va ganando</span>');
+  }
+
+  const cuerpo = document.getElementById('actividades');
+  if (!actividades.length) { cuerpo.innerHTML = '<tr><td colspan="5" class="vacio">Aún no hay actividades</td></tr>'; return; }
+  cuerpo.innerHTML = actividades.map(a => {
+    const ganador = a.prolog > a.scheme ? 'Prolog' : a.scheme > a.prolog ? 'Scheme' : 'Empate';
+    return `<tr>
+      <td>${escapar(a.actividad)}${a.detalle ? `<span class="detalle">${escapar(a.detalle)}</span>` : ''}</td>
+      <td>${escapar(a.fecha)}</td>
+      <td><span class="chip ${ganador}">${ganador}</span></td>
+      <td class="num">${a.prolog}</td>
+      <td class="num">${a.scheme}</td>
+    </tr>`;
+  }).join('');
+}
+
+async function actualizar() {
+  const estado = document.getElementById('estado');
+  try {
+    const resp = await fetch(URL_CSV + '&t=' + Date.now(), { cache: 'no-store' });
+    const texto = await resp.text();
+    if (!resp.ok || texto.trimStart().startsWith('<')) throw new Error('La hoja no es pública');
+    mostrar(leerActividades(parsearCSV(texto)));
+    estado.textContent = 'Actualizado a las ' + new Date().toLocaleTimeString('es-CL') + ' · se actualiza solo cada ' + CADA_SEGUNDOS + ' s';
+  } catch (e) {
+    estado.textContent = 'No se pudieron cargar los puntajes (' + e.message + '). Reintentando…';
+  }
+}
+
+actualizar();
+setInterval(actualizar, CADA_SEGUNDOS * 1000);
+</script>
 </body>
 </html>
