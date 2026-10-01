@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prolog vs Scheme</title>
+<style>
+  :root { --bg:#0f1115; --card:#1a1d24; --text:#f2f2f2; --muted:#9aa0aa; --prolog:#e0533d; --scheme:#3d8be0; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font-family:system-ui, sans-serif; text-align:center; padding:32px 16px; }
+  h1 { margin:0 0 4px; font-size:clamp(28px,6vw,48px); }
+  p.sub { margin:0 0 32px; color:var(--muted); }
+  .marcador { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+  .equipo { background:var(--card); border-radius:16px; padding:24px; min-width:240px; flex:1; max-width:360px; border-top:6px solid; }
+  .prolog { border-color:var(--prolog); } .scheme { border-color:var(--scheme); }
+  .nombre { font-size:24px; font-weight:700; }
+  .puntos { font-size:clamp(56px,14vw,96px); font-weight:800; font-variant-numeric:tabular-nums; }
+  .estado { margin-top:24px; color:var(--muted); font-size:14px; }
+</style>
+</head>
+<body>
+  <h1>Prolog vs Scheme</h1>
+  <p class="sub">Alianzas · Semana Informática</p>
+  <div class="marcador">
+    <div class="equipo prolog"><div class="nombre">Prolog</div><div class="puntos" id="prolog">0</div></div>
+    <div class="equipo scheme"><div class="nombre">Scheme</div><div class="puntos" id="scheme">0</div></div>
+  </div>
+  <p class="estado">Página en preparación</p>
+</body>
+</html>
