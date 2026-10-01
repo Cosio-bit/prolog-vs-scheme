@@ -69,45 +69,22 @@
 </main>
 
 <script>
-// Link CSV de "Publicar en la web" de la hoja de puntajes (solo lectura; la hoja sigue privada).
-// Columnas: Actividad | Fecha | Puntos Prolog | Puntos Scheme | Detalle | Categoría (opcional)
-const URL_CSV = '';
+// Los puntajes viven en puntajes.json (se copian desde la hoja privada y se publican con cada push).
+const URL_PUNTAJES = 'puntajes.json';
 const CADA_SEGUNDOS = 30;
-
-function parsearCSV(texto) {
-  const filas = []; let fila = [], campo = '', comillas = false;
-  for (let i = 0; i < texto.length; i++) {
-    const c = texto[i];
-    if (comillas) {
-      if (c === '"' && texto[i + 1] === '"') { campo += '"'; i++; }
-      else if (c === '"') comillas = false;
-      else campo += c;
-    } else if (c === '"') comillas = true;
-    else if (c === ',') { fila.push(campo); campo = ''; }
-    else if (c === '\n' || c === '\r') {
-      if (c === '\r' && texto[i + 1] === '\n') i++;
-      fila.push(campo); filas.push(fila); fila = []; campo = '';
-    } else campo += c;
-  }
-  if (campo !== '' || fila.length) { fila.push(campo); filas.push(fila); }
-  return filas;
-}
 
 const numero = v => { const n = parseFloat(String(v).replace(',', '.')); return isNaN(n) ? 0 : n; };
 const escapar = s => String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
 
-function leerActividades(filas) {
-  const enc = filas[0].map(h => h.trim().toLowerCase());
-  const col = nombre => enc.findIndex(h => h.includes(nombre));
-  const iAct = col('actividad'), iFecha = col('fecha'), iP = col('prolog'), iS = col('scheme'), iDet = col('detalle'), iCat = col('categor');
-  return filas.slice(1)
-    .map(f => ({
-      actividad: (f[iAct] || '').trim(),
-      fecha: iFecha >= 0 ? (f[iFecha] || '').trim() : '',
-      prolog: numero(f[iP]),
-      scheme: numero(f[iS]),
-      detalle: iDet >= 0 ? (f[iDet] || '').trim() : '',
-      categoria: iCat >= 0 ? (f[iCat] || '').trim() : '',
+function leerActividades(datos) {
+  return (datos.actividades || [])
+    .map(a => ({
+      actividad: String(a.actividad || '').trim(),
+      fecha: String(a.fecha || '').trim(),
+      prolog: numero(a.prolog),
+      scheme: numero(a.scheme),
+      detalle: String(a.detalle || '').trim(),
+      categoria: String(a.categoria || '').trim(),
     }))
     .filter(a => a.actividad);
 }
@@ -162,15 +139,16 @@ function mostrarCategorias(actividades) {
 
 async function actualizar() {
   const estado = document.getElementById('estado');
-  if (!URL_CSV) { mostrar([]); estado.textContent = 'Los puntajes aparecerán aquí muy pronto'; return; }
   try {
-    const resp = await fetch(URL_CSV + (URL_CSV.includes('?') ? '&' : '?') + 't=' + Date.now(), { cache: 'no-store' });
-    const texto = await resp.text();
-    if (!resp.ok || texto.trimStart().startsWith('<')) throw new Error('no se pudo leer la hoja');
-    mostrar(leerActividades(parsearCSV(texto)));
-    estado.textContent = 'Actualizado a las ' + new Date().toLocaleTimeString('es-CL') + ' · se actualiza solo cada ' + CADA_SEGUNDOS + ' s';
+    const resp = await fetch(URL_PUNTAJES + '?t=' + Date.now(), { cache: 'no-store' });
+    if (!resp.ok) throw new Error('error ' + resp.status);
+    const actividades = leerActividades(await resp.json());
+    mostrar(actividades);
+    estado.textContent = actividades.length
+      ? 'Actualizado a las ' + new Date().toLocaleTimeString('es-CL') + ' · se actualiza solo'
+      : 'Los puntajes aparecerán aquí muy pronto';
   } catch (e) {
-    estado.textContent = 'No se pudieron cargar los puntajes (' + e.message + '). Reintentando…';
+    estado.textContent = 'No se pudieron cargar los puntajes. Reintentando…';
   }
 }
 

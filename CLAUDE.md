@@ -6,14 +6,15 @@ Dueña: Andrea (Cosio-bit). Habla con ella en español, simple y paso a paso.
 ## Cómo funciona
 - `index.html` es toda la página (HTML + JS, sin build). Vercel la publica en
   https://prolog-vs-scheme.vercel.app cada vez que se hace push a `main`.
-- Los puntajes NO están en el código: la página lee cada 30 s la hoja
-  "Puntajes – Prolog vs Scheme" (en el Drive de Andrea; buscarla por nombre) a través del
-  link CSV de "Publicar en la web" (`URL_CSV` en index.html). La hoja en sí es PRIVADA.
-- NUNCA escribir en el repo ni en la página el link/ID de edición de las hojas:
-  el repo es público y Vercel sirve los archivos.
-- Columnas de esa hoja (se ubican por el texto del encabezado):
+- Los puntajes están en `puntajes.json`. La página lo lee al abrir y cada 30 s,
+  así que tras un push las pantallas abiertas se actualizan solas (~1 min).
+- La hoja de Google "Puntajes – Prolog vs Scheme" (Drive de Andrea, buscarla por nombre)
+  es PRIVADA y es el registro maestro. Columnas:
   Actividad | Fecha | Puntos Prolog | Puntos Scheme | Detalle | Categoría
-- Cambiar puntajes = editar filas en esa hoja. No hace falta redesplegar.
+  La página NUNCA lee la hoja: Claude la lee con el conector de Google Sheets y
+  copia los datos a `puntajes.json`.
+- NUNCA escribir en el repo ni en la página el link/ID de las hojas:
+  el repo es público y Vercel sirve los archivos.
 
 ## Reglas de puntaje
 Fuente: "PUNTAJES SEMANA INFORMÁTICA 2026" (en el Drive de Andrea; buscarla por nombre).
@@ -31,5 +32,10 @@ Fuente: "PUNTAJES SEMANA INFORMÁTICA 2026" (en el Drive de Andrea; buscarla por
 Andrea manda los resultados (a veces fotos u hojas desordenadas desde el celular).
 1. Leer/parsear los resultados y calcular los puntos con las reglas de arriba.
 2. Mostrarle una tabla con lo calculado y pedir confirmación antes de escribir.
-3. Escribir las filas en la hoja de puntajes (requiere el conector de Google Sheets;
-   si no está, entregarle las filas listas para copiar y pegar).
+3. Escribir las filas en la hoja de puntajes (conector de Google Sheets).
+4. Volver a leer la hoja completa y regenerar `puntajes.json` con todas las filas
+   (sin filas de ejemplo), hacer commit y push a `main`. Vercel publica solo.
+
+Formato de `puntajes.json`:
+{"actividades": [{"actividad": "...", "fecha": "...", "prolog": 0, "scheme": 0,
+  "detalle": "...", "categoria": "Deportes"}]}
