@@ -7,14 +7,16 @@ Dueña: Andrea (Cosio-bit). Habla con ella en español, simple y paso a paso.
 - `index.html` es toda la página (HTML + JS, sin build). Vercel la publica en
   https://prolog-vs-scheme.vercel.app cada vez que se hace push a `main`.
 - Los puntajes NO están en el código: la página lee cada 30 s la hoja
-  "Puntajes – Prolog vs Scheme" (ID `1U4yDtoTWt2rCuAFtolP-9P-lHDLexoBsKxF2YwXAz78`, gid=0)
-  vía `gviz/tq?tqx=out:csv`. La hoja debe estar compartida como "cualquiera con el enlace: lector".
+  "Puntajes – Prolog vs Scheme" (en el Drive de Andrea; buscarla por nombre) a través del
+  link CSV de "Publicar en la web" (`URL_CSV` en index.html). La hoja en sí es PRIVADA.
+- NUNCA escribir en el repo ni en la página el link/ID de edición de las hojas:
+  el repo es público y Vercel sirve los archivos.
 - Columnas de esa hoja (se ubican por el texto del encabezado):
   Actividad | Fecha | Puntos Prolog | Puntos Scheme | Detalle | Categoría
 - Cambiar puntajes = editar filas en esa hoja. No hace falta redesplegar.
 
 ## Reglas de puntaje
-Fuente: "PUNTAJES SEMANA INFORMÁTICA 2026" (ID `19ay6es9kaFdeCwpAHX_8sXbbITPWowKQm5l9QZE_Ym8`).
+Fuente: "PUNTAJES SEMANA INFORMÁTICA 2026" (en el Drive de Andrea; buscarla por nombre).
 - DEPORTES: 1er y 2do lugar según la pestaña DEPORTES.
 - VIDEOJUEGOS: 90 / 45 / 15 por 1°, 2° y 3° lugar. Cada lugar suma para la alianza
   del jugador que lo obtuvo (si Prolog saca 1°, 2° y 3°, Prolog recibe 150 y Scheme 0).

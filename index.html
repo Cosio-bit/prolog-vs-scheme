@@ -69,9 +69,9 @@
 </main>
 
 <script>
-// Hoja de Google con los puntajes. Columnas: Actividad | Fecha | Puntos Prolog | Puntos Scheme | Detalle | Categoría (opcional)
-const ID_HOJA = '1U4yDtoTWt2rCuAFtolP-9P-lHDLexoBsKxF2YwXAz78';
-const URL_CSV = `https://docs.google.com/spreadsheets/d/${ID_HOJA}/gviz/tq?tqx=out:csv&gid=0`;
+// Link CSV de "Publicar en la web" de la hoja de puntajes (solo lectura; la hoja sigue privada).
+// Columnas: Actividad | Fecha | Puntos Prolog | Puntos Scheme | Detalle | Categoría (opcional)
+const URL_CSV = '';
 const CADA_SEGUNDOS = 30;
 
 function parsearCSV(texto) {
@@ -162,10 +162,11 @@ function mostrarCategorias(actividades) {
 
 async function actualizar() {
   const estado = document.getElementById('estado');
+  if (!URL_CSV) { mostrar([]); estado.textContent = 'Los puntajes aparecerán aquí muy pronto'; return; }
   try {
-    const resp = await fetch(URL_CSV + '&t=' + Date.now(), { cache: 'no-store' });
+    const resp = await fetch(URL_CSV + (URL_CSV.includes('?') ? '&' : '?') + 't=' + Date.now(), { cache: 'no-store' });
     const texto = await resp.text();
-    if (!resp.ok || texto.trimStart().startsWith('<')) throw new Error('La hoja no es pública');
+    if (!resp.ok || texto.trimStart().startsWith('<')) throw new Error('no se pudo leer la hoja');
     mostrar(leerActividades(parsearCSV(texto)));
     estado.textContent = 'Actualizado a las ' + new Date().toLocaleTimeString('es-CL') + ' · se actualiza solo cada ' + CADA_SEGUNDOS + ' s';
   } catch (e) {
