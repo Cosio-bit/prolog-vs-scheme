@@ -71,6 +71,30 @@
       "scheme": 0,
       "detalle": "Reto cumplido por Prolog",
       "categoria": "Retos"
+    },
+    {
+      "actividad": "Plancha",
+      "fecha": "30/09",
+      "prolog": 40,
+      "scheme": 20,
+      "detalle": "Tiempo total: Prolog 18:33 vs Scheme 13:43 (4 vs 4)",
+      "categoria": "Deportes"
+    },
+    {
+      "actividad": "Dominadas (Balón)",
+      "fecha": "30/09",
+      "prolog": 20,
+      "scheme": 40,
+      "detalle": "Total: Scheme 133 vs Prolog 104 (3 vs 3)",
+      "categoria": "Deportes"
+    },
+    {
+      "actividad": "Lagartijas",
+      "fecha": "30/09",
+      "prolog": 20,
+      "scheme": 40,
+      "detalle": "Total: Scheme 207 vs Prolog 161 (4 vs 4)",
+      "categoria": "Deportes"
     }
   ],
   "juegos": [
