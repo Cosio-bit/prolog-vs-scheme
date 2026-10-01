@@ -114,21 +114,91 @@
       "podio": [],
       "partidas": [
         {
+          "a": "Schemen",
           "aliA": "Scheme",
+          "b": "ART4RUSGAN",
           "aliB": "Prolog",
           "resultado": "13 – 3"
         },
         {
+          "a": "Schemen",
           "aliA": "Scheme",
+          "b": "Los six seven",
           "aliB": "Scheme",
           "resultado": "9 – 13"
         },
         {
+          "a": "ART4RUSGAN",
           "aliA": "Prolog",
+          "b": "Los six seven",
           "aliB": "Scheme",
           "resultado": "1 – 13"
         }
-      ]
+      ],
+      "tabla": {
+        "columnas": [
+          "Equipo",
+          "G",
+          "P",
+          "Pts"
+        ],
+        "filas": [
+          {
+            "alianza": "Scheme",
+            "celdas": [
+              "Los six seven",
+              "1",
+              "0",
+              "1"
+            ]
+          },
+          {
+            "alianza": "Scheme",
+            "celdas": [
+              "Schemen",
+              "1",
+              "1",
+              "0"
+            ]
+          },
+          {
+            "alianza": "Prolog",
+            "celdas": [
+              "ART4RUSGAN",
+              "0",
+              "1",
+              "-1"
+            ]
+          },
+          {
+            "alianza": "Prolog",
+            "celdas": [
+              "21068 pilotos",
+              "–",
+              "–",
+              "–"
+            ]
+          },
+          {
+            "alianza": "Scheme",
+            "celdas": [
+              "BETANORANT",
+              "–",
+              "–",
+              "–"
+            ]
+          },
+          {
+            "alianza": "Prolog",
+            "celdas": [
+              "Chanchitas Lindas",
+              "–",
+              "–",
+              "–"
+            ]
+          }
+        ]
+      }
     },
     {
       "nombre": "FC26",

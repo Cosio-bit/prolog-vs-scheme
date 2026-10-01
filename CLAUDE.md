@@ -45,13 +45,14 @@ Formato de `puntajes.json`:
 {"actividades": [{"actividad": "...", "fecha": "...", "prolog": 0, "scheme": 0,
   "detalle": "...", "categoria": "Deportes"}],
  "juegos": [{"nombre": "Valorant", "estado": "Terminado|En curso|Por jugar",
-   "podio": ["Scheme", "Prolog", "Prolog"],
-   "partidas": [{"aliA": "Scheme", "aliB": "Prolog", "resultado": "13 – 3"}]}]}
+   "podio": ["Scheme", {"equipo": "Los six seven", "alianza": "Scheme"}],
+   "tabla": {"columnas": ["Equipo", "G", "P", "Pts"], "filas": [{"alianza": "Scheme", "celdas": ["Los six seven", "1", "0", "1"]}]},
+   "partidas": [{"a": "Schemen", "aliA": "Scheme", "b": "ART4RUSGAN", "aliB": "Prolog", "resultado": "13 – 3"}]}]}
 
 ## Privacidad (regla de Andrea)
-- En la página NO puede aparecer ningún nombre de persona ni de equipo: solo qué alianza
-  (Prolog/Scheme) salió en cada lugar. Esto aplica a puntajes.json, al "detalle" de las
-  actividades y también a la hoja de puntajes (se copia a la página).
+- En la página NO puede aparecer ningún nombre de PERSONA. Los nombres de EQUIPOS sí van.
+  En juegos individuales (ej. Just Dance) el podio muestra solo la alianza.
+  Aplica a puntajes.json, al "detalle" de las actividades y a la hoja de puntajes.
 
 ## Brackets de videojuegos
 - Hoja "Brackets" (Drive de Andrea, buscarla por nombre): una pestaña por juego

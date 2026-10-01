@@ -163,23 +163,30 @@ function mostrarCategorias(actividades) {
 
 const medallas = ['🥇', '🥈', '🥉'];
 const alianza = a => a === 'Prolog' || a === 'Scheme' ? a : '';
-const conPunto = a => `<span class="punto ${alianza(a)}"></span>${escapar(alianza(a))}`;
+// Muestra el nombre del EQUIPO si viene; si no, solo la alianza. Nunca nombres de personas.
+const conPunto = (ali, equipo) => `<span class="punto ${alianza(ali)}"></span>${escapar(equipo || alianza(ali))}`;
 
 function mostrarJuegos(juegos) {
   document.getElementById('seccion-juegos').hidden = !juegos.length;
   document.getElementById('juegos').innerHTML = juegos.map(j => {
     let html = `<div class="juego"><div class="juego-cab"><span class="juego-nombre">${escapar(j.nombre)}</span>
       <span class="estado-juego ${escapar(String(j.estado).replace(/ /g, '-'))}">${escapar(j.estado)}</span></div>`;
-    const podio = j.podio || [], partidas = j.partidas || [];
+    const podio = j.podio || [], partidas = j.partidas || [], filas = (j.tabla && j.tabla.filas) || [];
     if (podio.length) {
-      html += `<div class="subt">Podio</div><div class="podio">` + podio.map((a, i) =>
-        `<div><span>${medallas[i] || (i + 1) + '°'} ${i + 1}° lugar</span><span>${conPunto(a)}</span></div>`).join('') + `</div>`;
+      html += `<div class="subt">Podio</div><div class="podio">` + podio.map((p, i) => {
+        const ali = typeof p === 'string' ? p : p.alianza, equipo = typeof p === 'string' ? '' : p.equipo;
+        return `<div><span>${medallas[i] || ''} ${i + 1}° lugar</span><span>${conPunto(ali, equipo)}</span></div>`;
+      }).join('') + `</div>`;
+    }
+    if (filas.length) {
+      html += `<div class="subt">Tabla</div><table class="mini"><thead><tr>` + j.tabla.columnas.map(c => `<th>${escapar(c)}</th>`).join('') + `</tr></thead><tbody>` +
+        filas.map(f => `<tr>` + f.celdas.map((c, i) => `<td>${i === 0 ? conPunto(f.alianza, c) : escapar(c)}</td>`).join('') + `</tr>`).join('') + `</tbody></table>`;
     }
     if (partidas.length) {
       html += `<div class="subt">Partidas</div>` + partidas.map(p =>
-        `<div class="partida"><span>${conPunto(p.aliA)} vs ${conPunto(p.aliB)}</span><span class="res">${escapar(p.resultado)}</span></div>`).join('');
+        `<div class="partida"><span>${conPunto(p.aliA, p.a)} vs ${conPunto(p.aliB, p.b)}</span><span class="res">${escapar(p.resultado)}</span></div>`).join('');
     }
-    if (!podio.length && !partidas.length) html += `<div class="pendiente">Aún sin resultados</div>`;
+    if (!podio.length && !filas.length && !partidas.length) html += `<div class="pendiente">Aún sin resultados</div>`;
     return html + `</div>`;
   }).join('');
 }
