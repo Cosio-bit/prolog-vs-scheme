@@ -111,6 +111,14 @@
       "scheme": 0,
       "detalle": "1° Prolog · 2° Prolog · 3° Scheme",
       "categoria": "Actividades"
+    },
+    {
+      "actividad": "Volley",
+      "fecha": "",
+      "prolog": 150,
+      "scheme": 50,
+      "detalle": "Prolog gana 2 sets a 1 · Set 1: Scheme 21–17 · Set 2: Prolog 21–13 · Set 3: Prolog 21–13",
+      "categoria": "Deportes"
     }
   ],
   "juegos": [
