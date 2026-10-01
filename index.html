@@ -32,6 +32,11 @@
   .scroll { overflow-x:auto; }
   .estado { margin-top:24px; text-align:center; color:var(--muted); font-size:14px; }
   .vacio { color:var(--muted); text-align:center; padding:20px; }
+  .categorias { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px; }
+  .cat { background:var(--card); border-radius:12px; padding:14px 16px; }
+  .cat-nombre { font-weight:700; margin-bottom:8px; }
+  .cat-fila { display:flex; justify-content:space-between; font-variant-numeric:tabular-nums; }
+  .cat-fila .p { color:var(--prolog); font-weight:700; } .cat-fila .s { color:var(--scheme); font-weight:700; }
 </style>
 </head>
 <body>
@@ -47,11 +52,16 @@
   </div>
   <div class="barra"><div id="barra-prolog" style="width:50%;background:var(--prolog)"></div><div id="barra-scheme" style="width:50%;background:var(--scheme)"></div></div>
 
+  <section id="seccion-categorias" hidden>
+    <h2>Por categoría</h2>
+    <div class="categorias" id="categorias"></div>
+  </section>
+
   <h2>Actividades</h2>
   <div class="scroll">
     <table class="tabla">
-      <thead><tr><th>Actividad</th><th>Fecha</th><th>Ganador</th><th class="num">Prolog</th><th class="num">Scheme</th></tr></thead>
-      <tbody id="actividades"><tr><td colspan="5" class="vacio">Cargando…</td></tr></tbody>
+      <thead><tr><th>Actividad</th><th>Categoría</th><th>Fecha</th><th>Ganador</th><th class="num">Prolog</th><th class="num">Scheme</th></tr></thead>
+      <tbody id="actividades"><tr><td colspan="6" class="vacio">Cargando…</td></tr></tbody>
     </table>
   </div>
 
@@ -59,7 +69,7 @@
 </main>
 
 <script>
-// Hoja de Google con los puntajes. Columnas: Actividad | Fecha | Puntos Prolog | Puntos Scheme | Detalle
+// Hoja de Google con los puntajes. Columnas: Actividad | Fecha | Puntos Prolog | Puntos Scheme | Detalle | Categoría (opcional)
 const ID_HOJA = '1U4yDtoTWt2rCuAFtolP-9P-lHDLexoBsKxF2YwXAz78';
 const URL_CSV = `https://docs.google.com/spreadsheets/d/${ID_HOJA}/gviz/tq?tqx=out:csv&gid=0`;
 const CADA_SEGUNDOS = 30;
@@ -89,7 +99,7 @@ const escapar = s => String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt
 function leerActividades(filas) {
   const enc = filas[0].map(h => h.trim().toLowerCase());
   const col = nombre => enc.findIndex(h => h.includes(nombre));
-  const iAct = col('actividad'), iFecha = col('fecha'), iP = col('prolog'), iS = col('scheme'), iDet = col('detalle');
+  const iAct = col('actividad'), iFecha = col('fecha'), iP = col('prolog'), iS = col('scheme'), iDet = col('detalle'), iCat = col('categor');
   return filas.slice(1)
     .map(f => ({
       actividad: (f[iAct] || '').trim(),
@@ -97,6 +107,7 @@ function leerActividades(filas) {
       prolog: numero(f[iP]),
       scheme: numero(f[iS]),
       detalle: iDet >= 0 ? (f[iDet] || '').trim() : '',
+      categoria: iCat >= 0 ? (f[iCat] || '').trim() : '',
     }))
     .filter(a => a.actividad);
 }
@@ -116,18 +127,37 @@ function mostrar(actividades) {
     lider.insertAdjacentHTML('beforeend', '<span class="corona">Va ganando</span>');
   }
 
+  mostrarCategorias(actividades);
+
   const cuerpo = document.getElementById('actividades');
-  if (!actividades.length) { cuerpo.innerHTML = '<tr><td colspan="5" class="vacio">Aún no hay actividades</td></tr>'; return; }
+  if (!actividades.length) { cuerpo.innerHTML = '<tr><td colspan="6" class="vacio">Aún no hay actividades</td></tr>'; return; }
   cuerpo.innerHTML = actividades.map(a => {
     const ganador = a.prolog > a.scheme ? 'Prolog' : a.scheme > a.prolog ? 'Scheme' : 'Empate';
     return `<tr>
       <td>${escapar(a.actividad)}${a.detalle ? `<span class="detalle">${escapar(a.detalle)}</span>` : ''}</td>
+      <td>${escapar(a.categoria)}</td>
       <td>${escapar(a.fecha)}</td>
       <td><span class="chip ${ganador}">${ganador}</span></td>
       <td class="num">${a.prolog}</td>
       <td class="num">${a.scheme}</td>
     </tr>`;
   }).join('');
+}
+
+function mostrarCategorias(actividades) {
+  const porCat = new Map();
+  for (const a of actividades) {
+    if (!a.categoria) continue;
+    const t = porCat.get(a.categoria) || { prolog: 0, scheme: 0 };
+    t.prolog += a.prolog; t.scheme += a.scheme;
+    porCat.set(a.categoria, t);
+  }
+  document.getElementById('seccion-categorias').hidden = porCat.size === 0;
+  document.getElementById('categorias').innerHTML = [...porCat].map(([cat, t]) => `<div class="cat">
+      <div class="cat-nombre">${escapar(cat)}</div>
+      <div class="cat-fila"><span>Prolog</span><span class="p">${t.prolog}</span></div>
+      <div class="cat-fila"><span>Scheme</span><span class="s">${t.scheme}</span></div>
+    </div>`).join('');
 }
 
 async function actualizar() {
