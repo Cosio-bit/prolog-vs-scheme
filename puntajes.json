@@ -1,3 +1,57 @@
 {
-  "actividades": []
+  "actividades": [
+    {
+      "actividad": "Just Dance",
+      "fecha": "",
+      "prolog": 60,
+      "scheme": 90,
+      "detalle": "1° Patricia Ramos (Scheme) · 2° Johan Neira (Prolog) · 3° Jazmin Melo (Prolog)",
+      "categoria": "Videojuegos"
+    }
+  ],
+  "juegos": [
+    {
+      "nombre": "Just Dance",
+      "estado": "Terminado",
+      "podio": [
+        { "nombre": "Patricia Ramos", "alianza": "Scheme" },
+        { "nombre": "Johan Neira", "alianza": "Prolog" },
+        { "nombre": "Jazmin Melo", "alianza": "Prolog" }
+      ],
+      "tabla": {
+        "columnas": ["Participante", "Puntaje"],
+        "filas": [
+          { "alianza": "Scheme", "celdas": ["Patricia Ramos", "53.102"] },
+          { "alianza": "Prolog", "celdas": ["Johan Neira", "51.465"] },
+          { "alianza": "Prolog", "celdas": ["Jazmin Melo", "50.271"] },
+          { "alianza": "Prolog", "celdas": ["Daniel Villarroel", "48.524"] }
+        ]
+      },
+      "partidas": []
+    },
+    {
+      "nombre": "Valorant",
+      "estado": "En curso",
+      "podio": [],
+      "tabla": {
+        "columnas": ["Equipo", "G", "P", "Pts"],
+        "filas": [
+          { "alianza": "Scheme", "celdas": ["Los six seven", "1", "0", "1"] },
+          { "alianza": "Scheme", "celdas": ["Schemen", "1", "1", "0"] },
+          { "alianza": "Prolog", "celdas": ["ART4RUSGAN", "0", "1", "-1"] },
+          { "alianza": "Prolog", "celdas": ["21068 pilotos", "–", "–", "–"] },
+          { "alianza": "Scheme", "celdas": ["BETANORANT", "–", "–", "–"] },
+          { "alianza": "Prolog", "celdas": ["Chanchitas Lindas", "–", "–", "–"] }
+        ]
+      },
+      "partidas": [
+        { "a": "Schemen", "aliA": "Scheme", "b": "ART4RUSGAN", "aliB": "Prolog", "resultado": "13 – 3" },
+        { "a": "Schemen", "aliA": "Scheme", "b": "Los six seven", "aliB": "Scheme", "resultado": "9 – 13" },
+        { "a": "ART4RUSGAN", "aliA": "Prolog", "b": "Los six seven", "aliB": "Scheme", "resultado": "1 – 13" }
+      ]
+    },
+    { "nombre": "FC26", "estado": "Por jugar", "podio": [], "tabla": null, "partidas": [] },
+    { "nombre": "LoL", "estado": "Por jugar", "podio": [], "tabla": null, "partidas": [] },
+    { "nombre": "Rocket League", "estado": "Por jugar", "podio": [], "tabla": null, "partidas": [] }
+  ]
 }

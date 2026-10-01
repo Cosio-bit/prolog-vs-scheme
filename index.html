@@ -30,6 +30,25 @@
   .chip { display:inline-block; padding:2px 10px; border-radius:999px; font-size:13px; font-weight:700; }
   .chip.Prolog { background:var(--prolog); } .chip.Scheme { background:var(--scheme); } .chip.Empate { background:var(--line); }
   .scroll { overflow-x:auto; }
+  @media (max-width:600px) { .tabla th:nth-child(2), .tabla td:nth-child(2), .tabla th:nth-child(3), .tabla td:nth-child(3) { display:none; } }
+  .juegos { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:12px; }
+  .juego { background:var(--card); border-radius:12px; padding:16px; }
+  .juego-cab { display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:10px; }
+  .juego-nombre { font-weight:700; font-size:18px; }
+  .estado-juego { font-size:12px; font-weight:700; padding:2px 10px; border-radius:999px; background:var(--line); color:var(--muted); white-space:nowrap; }
+  .estado-juego.Terminado { background:var(--text); color:var(--bg); }
+  .estado-juego.En-curso { background:#e0b43d; color:var(--bg); }
+  .subt { color:var(--muted); font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:.04em; margin:12px 0 6px; }
+  .podio { display:flex; flex-direction:column; gap:4px; }
+  .podio div, .fila-j, .partida { display:flex; justify-content:space-between; gap:8px; font-size:14px; }
+  .punto { display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; vertical-align:middle; }
+  .punto.Prolog { background:var(--prolog); } .punto.Scheme { background:var(--scheme); }
+  .mini { width:100%; border-collapse:collapse; font-size:14px; }
+  .mini th, .mini td { padding:4px 6px; text-align:right; font-variant-numeric:tabular-nums; }
+  .mini th:first-child, .mini td:first-child { text-align:left; }
+  .mini th { color:var(--muted); font-weight:600; font-size:12px; }
+  .partida { padding:3px 0; } .partida .res { font-variant-numeric:tabular-nums; color:var(--muted); white-space:nowrap; }
+  .pendiente { color:var(--muted); font-size:14px; }
   .estado { margin-top:24px; text-align:center; color:var(--muted); font-size:14px; }
   .vacio { color:var(--muted); text-align:center; padding:20px; }
   .categorias { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px; }
@@ -64,6 +83,11 @@
       <tbody id="actividades"><tr><td colspan="6" class="vacio">Cargando…</td></tr></tbody>
     </table>
   </div>
+
+  <section id="seccion-juegos" hidden>
+    <h2>Juegos</h2>
+    <div class="juegos" id="juegos"></div>
+  </section>
 
   <p class="estado" id="estado">Cargando puntajes…</p>
 </main>
@@ -137,13 +161,42 @@ function mostrarCategorias(actividades) {
     </div>`).join('');
 }
 
+const medallas = ['🥇', '🥈', '🥉'];
+const conPunto = (nombre, alianza) => `<span class="punto ${alianza === 'Prolog' || alianza === 'Scheme' ? alianza : ''}"></span>${escapar(nombre)}`;
+
+function mostrarJuegos(juegos) {
+  document.getElementById('seccion-juegos').hidden = !juegos.length;
+  document.getElementById('juegos').innerHTML = juegos.map(j => {
+    let html = `<div class="juego"><div class="juego-cab"><span class="juego-nombre">${escapar(j.nombre)}</span>
+      <span class="estado-juego ${escapar(String(j.estado).replace(/ /g, '-'))}">${escapar(j.estado)}</span></div>`;
+    if (j.podio && j.podio.length) {
+      html += `<div class="subt">Podio</div><div class="podio">` + j.podio.map((p, i) =>
+        `<div><span>${medallas[i] || (i + 1) + '°'} ${conPunto(p.nombre, p.alianza)}</span><span>${escapar(p.alianza)}</span></div>`).join('') + `</div>`;
+    }
+    if (j.tabla && j.tabla.filas && j.tabla.filas.length) {
+      html += `<div class="subt">Tabla</div><table class="mini"><thead><tr>` + j.tabla.columnas.map(c => `<th>${escapar(c)}</th>`).join('') + `</tr></thead><tbody>` +
+        j.tabla.filas.map(f => `<tr>` + f.celdas.map((c, i) => `<td>${i === 0 ? conPunto(c, f.alianza) : escapar(c)}</td>`).join('') + `</tr>`).join('') + `</tbody></table>`;
+    }
+    if (j.partidas && j.partidas.length) {
+      html += `<div class="subt">Partidas</div>` + j.partidas.map(p =>
+        `<div class="partida"><span>${conPunto(p.a, p.aliA)} vs ${conPunto(p.b, p.aliB)}</span><span class="res">${escapar(p.resultado)}</span></div>`).join('');
+    }
+    if (!(j.podio && j.podio.length) && !(j.tabla && j.tabla.filas && j.tabla.filas.length) && !(j.partidas && j.partidas.length)) {
+      html += `<div class="pendiente">Aún sin resultados</div>`;
+    }
+    return html + `</div>`;
+  }).join('');
+}
+
 async function actualizar() {
   const estado = document.getElementById('estado');
   try {
     const resp = await fetch(URL_PUNTAJES + '?t=' + Date.now(), { cache: 'no-store' });
     if (!resp.ok) throw new Error('error ' + resp.status);
-    const actividades = leerActividades(await resp.json());
+    const datos = await resp.json();
+    const actividades = leerActividades(datos);
     mostrar(actividades);
+    mostrarJuegos(datos.juegos || []);
     estado.textContent = actividades.length
       ? 'Actualizado a las ' + new Date().toLocaleTimeString('es-CL') + ' · se actualiza solo'
       : 'Los puntajes aparecerán aquí muy pronto';

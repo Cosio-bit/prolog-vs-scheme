@@ -38,4 +38,16 @@ Andrea manda los resultados (a veces fotos u hojas desordenadas desde el celular
 
 Formato de `puntajes.json`:
 {"actividades": [{"actividad": "...", "fecha": "...", "prolog": 0, "scheme": 0,
-  "detalle": "...", "categoria": "Deportes"}]}
+  "detalle": "...", "categoria": "Deportes"}],
+ "juegos": [{"nombre": "Valorant", "estado": "Terminado|En curso|Por jugar",
+   "podio": [{"nombre": "...", "alianza": "Prolog|Scheme"}],
+   "tabla": {"columnas": ["Equipo", "G", "P", "Pts"], "filas": [{"alianza": "Scheme", "celdas": ["...", "1", "0", "1"]}]},
+   "partidas": [{"a": "...", "aliA": "Scheme", "b": "...", "aliB": "Prolog", "resultado": "13 – 3"}]}]}
+
+## Brackets de videojuegos
+- Hoja "Brackets" (Drive de Andrea, buscarla por nombre): una pestaña por juego
+  (Just Dance, Valorant, FC26, LoL, Rocket League).
+- La alianza de cada equipo/persona se ve por COLOR de celda: rosado = Scheme, amarillo = Prolog
+  (leer con get_spreadsheet + effectiveFormat.backgroundColor). En Just Dance está en texto.
+- La sección "juegos" de puntajes.json se copia desde esa hoja. Un juego solo suma puntos
+  a las alianzas (fila en "actividades") cuando Andrea confirma que terminó.
