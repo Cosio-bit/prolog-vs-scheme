@@ -151,6 +151,14 @@
       "scheme": 0,
       "detalle": "1° Prolog · 2° Prolog · 3° Prolog",
       "categoria": "Videojuegos"
+    },
+    {
+      "actividad": "El que se la sabe: Cante 1",
+      "fecha": "",
+      "prolog": 130,
+      "scheme": 50,
+      "detalle": "Primera parte",
+      "categoria": "Actividades"
     }
   ],
   "juegos": [
