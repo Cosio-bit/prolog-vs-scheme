@@ -119,6 +119,14 @@
       "scheme": 50,
       "detalle": "Prolog gana 2 sets a 1 · Set 1: Scheme 21–17 · Set 2: Prolog 21–13 · Set 3: Prolog 21–13",
       "categoria": "Deportes"
+    },
+    {
+      "actividad": "Mario Kart",
+      "fecha": "",
+      "prolog": 135,
+      "scheme": 15,
+      "detalle": "1° Prolog · 2° Prolog · 3° Scheme (final, Ronda 3)",
+      "categoria": "Videojuegos"
     }
   ],
   "juegos": [
@@ -248,6 +256,52 @@
           ]
         }
       ]
+    },
+    {
+      "nombre": "Mario Kart",
+      "estado": "Terminado",
+      "podio": [
+        "Prolog",
+        "Prolog",
+        "Scheme"
+      ],
+      "tabla": {
+        "columnas": [
+          "Final (Ronda 3)",
+          "Puntos"
+        ],
+        "filas": [
+          {
+            "alianza": "Prolog",
+            "celdas": [
+              "Prolog",
+              "50"
+            ]
+          },
+          {
+            "alianza": "Prolog",
+            "celdas": [
+              "Prolog",
+              "41"
+            ]
+          },
+          {
+            "alianza": "Scheme",
+            "celdas": [
+              "Scheme",
+              "40"
+            ]
+          },
+          {
+            "alianza": "Prolog",
+            "celdas": [
+              "Prolog",
+              "25"
+            ]
+          }
+        ]
+      },
+      "rondas": []
     },
     {
       "nombre": "FC26",
