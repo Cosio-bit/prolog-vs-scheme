@@ -127,6 +127,22 @@
       "scheme": 15,
       "detalle": "1° Prolog · 2° Prolog · 3° Scheme (final, Ronda 3)",
       "categoria": "Videojuegos"
+    },
+    {
+      "actividad": "UNO",
+      "fecha": "",
+      "prolog": 100,
+      "scheme": 0,
+      "detalle": "1° Prolog · 2° Prolog · 3° Prolog",
+      "categoria": "Actividades"
+    },
+    {
+      "actividad": "Exploding Kittens",
+      "fecha": "",
+      "prolog": 0,
+      "scheme": 100,
+      "detalle": "1° Scheme · 2° Scheme · 3° Scheme",
+      "categoria": "Actividades"
     }
   ],
   "juegos": [
