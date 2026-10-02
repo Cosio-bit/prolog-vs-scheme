@@ -52,6 +52,7 @@ Formato de `puntajes.json`:
    "tablas": [{"titulo": "Pista 1", "columnas": [...], "filas": [...]}],  (tablas reemplaza a tabla si existe)
    "nota": "texto corto opcional"}]}
 - Mario Kart: se muestran los PERSONAJES (Waluigi, Huesito…), nunca los nombres reales.
+- Smash Bros: jugadores anonimizados como P1–P7 / S1–S7 (número = cruce de la ronda 1).
 - Valorant: 1ª ronda = 3 cruces (Schemen–21068 pilotos, BETANORANT–ART4RUSGAN,
   Los six seven–Chanchitas Lindas); los ganadores juegan una tabla final todos contra todos.
 

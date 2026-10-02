@@ -143,6 +143,14 @@
       "scheme": 100,
       "detalle": "1° Scheme · 2° Scheme · 3° Scheme",
       "categoria": "Actividades"
+    },
+    {
+      "actividad": "Smash Bros",
+      "fecha": "",
+      "prolog": 150,
+      "scheme": 0,
+      "detalle": "1° Prolog · 2° Prolog · 3° Prolog",
+      "categoria": "Videojuegos"
     }
   ],
   "juegos": [
@@ -414,6 +422,157 @@
         }
       ],
       "nota": "* Yoshi (Prolog) no pudo correr la final; entró Baby Daisy, el siguiente mejor puntaje de Prolog."
+    },
+    {
+      "nombre": "Smash Bros",
+      "estado": "Terminado",
+      "podio": [
+        {
+          "equipo": "P2",
+          "alianza": "Prolog"
+        },
+        {
+          "equipo": "P6",
+          "alianza": "Prolog"
+        },
+        {
+          "equipo": "P1",
+          "alianza": "Prolog"
+        }
+      ],
+      "rondas": [
+        {
+          "titulo": "Ronda 1",
+          "partidas": [
+            {
+              "a": "P1",
+              "aliA": "Prolog",
+              "b": "S1",
+              "aliB": "Scheme",
+              "resultado": "gana P1"
+            },
+            {
+              "a": "P2",
+              "aliA": "Prolog",
+              "b": "S2",
+              "aliB": "Scheme",
+              "resultado": "gana P2"
+            },
+            {
+              "a": "P3",
+              "aliA": "Prolog",
+              "b": "S3",
+              "aliB": "Scheme",
+              "resultado": "gana S3"
+            },
+            {
+              "a": "P4",
+              "aliA": "Prolog",
+              "b": "S4",
+              "aliB": "Scheme",
+              "resultado": "gana S4"
+            },
+            {
+              "a": "P5",
+              "aliA": "Prolog",
+              "b": "S5",
+              "aliB": "Scheme",
+              "resultado": "gana S5"
+            },
+            {
+              "a": "P6",
+              "aliA": "Prolog",
+              "b": "S6",
+              "aliB": "Scheme",
+              "resultado": "gana P6"
+            },
+            {
+              "a": "P7",
+              "aliA": "Prolog",
+              "b": "S7",
+              "aliB": "Scheme",
+              "resultado": "gana P7"
+            }
+          ]
+        },
+        {
+          "titulo": "Ronda 2",
+          "partidas": [
+            {
+              "a": "P7",
+              "aliA": "Prolog",
+              "b": "S4",
+              "aliB": "Scheme",
+              "resultado": "gana S4"
+            },
+            {
+              "a": "P2",
+              "aliA": "Prolog",
+              "b": "S5",
+              "aliB": "Scheme",
+              "resultado": "gana P2"
+            },
+            {
+              "a": "P6",
+              "aliA": "Prolog",
+              "b": "S3",
+              "aliB": "Scheme",
+              "resultado": "gana P6"
+            },
+            {
+              "a": "P1",
+              "aliA": "Prolog",
+              "b": "—",
+              "aliB": "",
+              "resultado": "pasa directo"
+            }
+          ]
+        },
+        {
+          "titulo": "Semifinales",
+          "partidas": [
+            {
+              "a": "P1",
+              "aliA": "Prolog",
+              "b": "P2",
+              "aliB": "Prolog",
+              "resultado": "gana P2"
+            },
+            {
+              "a": "P6",
+              "aliA": "Prolog",
+              "b": "S4",
+              "aliB": "Scheme",
+              "resultado": "gana P6"
+            }
+          ]
+        },
+        {
+          "titulo": "Tercer lugar",
+          "partidas": [
+            {
+              "a": "S4",
+              "aliA": "Scheme",
+              "b": "P1",
+              "aliB": "Prolog",
+              "resultado": "gana P1"
+            }
+          ]
+        },
+        {
+          "titulo": "Final",
+          "partidas": [
+            {
+              "a": "P2",
+              "aliA": "Prolog",
+              "b": "P6",
+              "aliB": "Prolog",
+              "resultado": "gana P2"
+            }
+          ]
+        }
+      ],
+      "nota": "Jugadores anonimizados: P = Prolog, S = Scheme."
     },
     {
       "nombre": "FC26",
