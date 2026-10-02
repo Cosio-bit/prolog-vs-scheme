@@ -48,7 +48,10 @@ Formato de `puntajes.json`:
    "podio": ["Scheme", {"equipo": "Los six seven", "alianza": "Scheme"}],
    "tabla": {"columnas": ["Equipo", "G", "P", "Pts"], "filas": [{"alianza": "Scheme", "celdas": ["Los six seven", "1", "0", "1"]}]},
    "partidas": [{"a": "Schemen", "aliA": "Scheme", "b": "ART4RUSGAN", "aliB": "Prolog", "resultado": "13 – 3"}],
-   "rondas": [{"titulo": "Primera ronda", "partidas": [...]}]}]}   (rondas reemplaza a partidas si existe)
+   "rondas": [{"titulo": "Primera ronda", "partidas": [...]}],      (rondas reemplaza a partidas si existe)
+   "tablas": [{"titulo": "Pista 1", "columnas": [...], "filas": [...]}],  (tablas reemplaza a tabla si existe)
+   "nota": "texto corto opcional"}]}
+- Mario Kart: se muestran los PERSONAJES (Waluigi, Huesito…), nunca los nombres reales.
 - Valorant: 1ª ronda = 3 cruces (Schemen–21068 pilotos, BETANORANT–ART4RUSGAN,
   Los six seven–Chanchitas Lindas); los ganadores juegan una tabla final todos contra todos.
 

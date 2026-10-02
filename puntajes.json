@@ -277,47 +277,143 @@
       "nombre": "Mario Kart",
       "estado": "Terminado",
       "podio": [
-        "Prolog",
-        "Prolog",
-        "Scheme"
+        {
+          "equipo": "Waluigi",
+          "alianza": "Prolog"
+        },
+        {
+          "equipo": "Huesito",
+          "alianza": "Prolog"
+        },
+        {
+          "equipo": "Daisy",
+          "alianza": "Scheme"
+        }
       ],
-      "tabla": {
-        "columnas": [
-          "Final (Ronda 3)",
-          "Puntos"
-        ],
-        "filas": [
-          {
-            "alianza": "Prolog",
-            "celdas": [
-              "Prolog",
-              "50"
-            ]
-          },
-          {
-            "alianza": "Prolog",
-            "celdas": [
-              "Prolog",
-              "41"
-            ]
-          },
-          {
-            "alianza": "Scheme",
-            "celdas": [
-              "Scheme",
-              "40"
-            ]
-          },
-          {
-            "alianza": "Prolog",
-            "celdas": [
-              "Prolog",
-              "25"
-            ]
-          }
-        ]
-      },
-      "rondas": []
+      "tablas": [
+        {
+          "titulo": "Pista 1",
+          "columnas": [
+            "Personaje",
+            "Pts",
+            "Final"
+          ],
+          "filas": [
+            {
+              "alianza": "Prolog",
+              "celdas": [
+                "Huesito",
+                "55",
+                "✓"
+              ]
+            },
+            {
+              "alianza": "Prolog",
+              "celdas": [
+                "Yoshi",
+                "46",
+                "✓*"
+              ]
+            },
+            {
+              "alianza": "Scheme",
+              "celdas": [
+                "Huesito R",
+                "27",
+                ""
+              ]
+            },
+            {
+              "alianza": "Scheme",
+              "celdas": [
+                "Shy Guy",
+                "24",
+                ""
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "Pista 2",
+          "columnas": [
+            "Personaje",
+            "Pts",
+            "Final"
+          ],
+          "filas": [
+            {
+              "alianza": "Prolog",
+              "celdas": [
+                "Waluigi",
+                "60",
+                "✓"
+              ]
+            },
+            {
+              "alianza": "Scheme",
+              "celdas": [
+                "Daisy",
+                "37",
+                "✓"
+              ]
+            },
+            {
+              "alianza": "Scheme",
+              "celdas": [
+                "Yoshi",
+                "26",
+                ""
+              ]
+            },
+            {
+              "alianza": "Prolog",
+              "celdas": [
+                "Baby Daisy",
+                "15",
+                "✓*"
+              ]
+            }
+          ]
+        },
+        {
+          "titulo": "Final",
+          "columnas": [
+            "Personaje",
+            "Pts"
+          ],
+          "filas": [
+            {
+              "alianza": "Prolog",
+              "celdas": [
+                "Waluigi",
+                "50"
+              ]
+            },
+            {
+              "alianza": "Prolog",
+              "celdas": [
+                "Huesito",
+                "41"
+              ]
+            },
+            {
+              "alianza": "Scheme",
+              "celdas": [
+                "Daisy",
+                "40"
+              ]
+            },
+            {
+              "alianza": "Prolog",
+              "celdas": [
+                "Baby Daisy",
+                "25"
+              ]
+            }
+          ]
+        }
+      ],
+      "nota": "* Yoshi (Prolog) no pudo correr la final; entró Baby Daisy, el siguiente mejor puntaje de Prolog."
     },
     {
       "nombre": "FC26",

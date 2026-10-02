@@ -53,6 +53,7 @@
   .mini th { color:var(--muted); font-weight:600; font-size:12px; }
   .partida { padding:3px 0; } .partida .res { font-variant-numeric:tabular-nums; color:var(--muted); white-space:nowrap; }
   .pendiente { color:var(--muted); font-size:14px; }
+  .nota { color:var(--muted); font-size:12px; margin-top:10px; }
   .estado { margin-top:24px; text-align:center; color:var(--muted); font-size:14px; }
   .vacio { color:var(--muted); text-align:center; padding:20px; }
   .categorias { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px; }
@@ -175,7 +176,8 @@ function mostrarJuegos(juegos) {
   document.getElementById('juegos').innerHTML = juegos.map(j => {
     let html = `<div class="juego"><div class="juego-cab"><span class="juego-nombre">${escapar(j.nombre)}</span>
       <span class="estado-juego ${escapar(String(j.estado).replace(/ /g, '-'))}">${escapar(j.estado)}</span></div>`;
-    const podio = j.podio || [], filas = (j.tabla && j.tabla.filas) || [];
+    const podio = j.podio || [];
+    const tablas = j.tablas || (j.tabla && j.tabla.filas && j.tabla.filas.length ? [{ titulo: 'Tabla', ...j.tabla }] : []);
     const rondas = j.rondas || ((j.partidas || []).length ? [{ titulo: 'Partidas', partidas: j.partidas }] : []);
     if (podio.length) {
       html += `<div class="subt">Podio</div><div class="podio">` + podio.map((p, i) => {
@@ -183,15 +185,16 @@ function mostrarJuegos(juegos) {
         return `<div><span>${medallas[i] || ''} ${i + 1}° lugar</span><span>${conPunto(ali, equipo)}</span></div>`;
       }).join('') + `</div>`;
     }
-    if (filas.length) {
-      html += `<div class="subt">Tabla</div><table class="mini"><thead><tr>` + j.tabla.columnas.map(c => `<th>${escapar(c)}</th>`).join('') + `</tr></thead><tbody>` +
-        filas.map(f => `<tr>` + f.celdas.map((c, i) => `<td>${i === 0 ? conPunto(f.alianza, c) : escapar(c)}</td>`).join('') + `</tr>`).join('') + `</tbody></table>`;
+    for (const t of tablas) {
+      html += `<div class="subt">${escapar(t.titulo)}</div><table class="mini"><thead><tr>` + t.columnas.map(c => `<th>${escapar(c)}</th>`).join('') + `</tr></thead><tbody>` +
+        (t.filas || []).map(f => `<tr>` + f.celdas.map((c, i) => `<td>${i === 0 ? conPunto(f.alianza, c) : escapar(c)}</td>`).join('') + `</tr>`).join('') + `</tbody></table>`;
     }
     for (const r of rondas) {
       html += `<div class="subt">${escapar(r.titulo)}</div>` + (r.partidas || []).map(p =>
         `<div class="partida"><span>${conPunto(p.aliA, p.a)} vs ${conPunto(p.aliB, p.b)}</span><span class="res">${escapar(p.resultado)}</span></div>`).join('');
     }
-    if (!podio.length && !filas.length && !rondas.length) html += `<div class="pendiente">Aún sin resultados</div>`;
+    if (j.nota) html += `<div class="nota">${escapar(j.nota)}</div>`;
+    if (!podio.length && !tablas.length && !rondas.length) html += `<div class="pendiente">Aún sin resultados</div>`;
     return html + `</div>`;
   }).join('');
 }
