@@ -207,6 +207,14 @@
       "scheme": 150,
       "detalle": "Gana Scheme 3 a 1",
       "categoria": "Deportes"
+    },
+    {
+      "actividad": "Quiz (Trivia)",
+      "fecha": "",
+      "prolog": 0,
+      "scheme": 100,
+      "detalle": "Gana Scheme",
+      "categoria": "Actividades"
     }
   ],
   "juegos": [
