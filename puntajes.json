@@ -215,6 +215,14 @@
       "scheme": 100,
       "detalle": "Gana Scheme",
       "categoria": "Actividades"
+    },
+    {
+      "actividad": "Tenis",
+      "fecha": "",
+      "prolog": 50,
+      "scheme": 150,
+      "detalle": "Gana Scheme",
+      "categoria": "Deportes"
     }
   ],
   "juegos": [
