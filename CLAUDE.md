@@ -30,8 +30,8 @@ Fuente: "PUNTAJES SEMANA INFORMÁTICA 2026" (en el Drive de Andrea; buscarla por
 - RETOS IMPOSIBLES: la fuente final es la hoja "PUNTAJES RETOS IMPOSIBLES" (Drive de Andrea).
   Pestaña PUNTAJES = puntos 1er/2do lugar (valores originales, ej. STRAVA 100 / 50).
   Pestaña GANADOS = un "1" por alianza en cada reto que hizo.
-  Por ahora cada "1" suma el puntaje de PRIMER LUGAR (Andrea lo aprobó). PENDIENTE: confirmar
-  qué significa exactamente el "1" y cómo se marca un 2do lugar; si cambia, recalcular.
+  Cada "1" suma el puntaje de PRIMER LUGAR. Confirmado: la fila TOTALES de la pestaña GANADOS
+  coincide con esta forma de contar. Para revisar retos nuevos, comparar con esa fila TOTALES.
 - Categorías a usar: Deportes, Videojuegos, Actividades, Retos.
 
 ## Flujo de trabajo
