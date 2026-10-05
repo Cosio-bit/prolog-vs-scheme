@@ -21,6 +21,7 @@ Fuente: "PUNTAJES SEMANA INFORMÁTICA 2026" (en el Drive de Andrea; buscarla por
 - DEPORTES: 1er y 2do lugar según la pestaña DEPORTES. En pruebas individuales
   (lagartijas, plancha, dominadas) gana la alianza con la SUMA más alta de sus participantes
   (Forma A, aprobada por Andrea). Los asteriscos en las hojas de registro: significado desconocido.
+  Si una alianza no se presenta (gana la otra por default), la que no se presentó recibe 0.
 - VIDEOJUEGOS: 90 / 45 / 15 por 1°, 2° y 3° lugar. Cada lugar suma para la alianza
   del jugador que lo obtuvo (si Prolog saca 1°, 2° y 3°, Prolog recibe 150 y Scheme 0).
 - ACTIVIDADES: 1er/2do lugar según la pestaña. Las actividades "por unidad" se mantienen:

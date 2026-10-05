@@ -175,6 +175,30 @@
       "scheme": 105,
       "detalle": "1° SALVADORSAHUR67 (Scheme) · 2° LOS PIE YETI (Prolog) · 3° LOS SAC 2 (Scheme)",
       "categoria": "Videojuegos"
+    },
+    {
+      "actividad": "Básquet",
+      "fecha": "",
+      "prolog": 0,
+      "scheme": 150,
+      "detalle": "Gana Scheme por default (Prolog no se presentó)",
+      "categoria": "Deportes"
+    },
+    {
+      "actividad": "Atletismo",
+      "fecha": "",
+      "prolog": 70,
+      "scheme": 0,
+      "detalle": "Gana Prolog por default (Scheme no se presentó)",
+      "categoria": "Deportes"
+    },
+    {
+      "actividad": "Fútbol",
+      "fecha": "",
+      "prolog": 50,
+      "scheme": 150,
+      "detalle": "Gana Scheme 3 a 1",
+      "categoria": "Deportes"
     }
   ],
   "juegos": [
