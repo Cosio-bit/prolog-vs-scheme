@@ -159,6 +159,22 @@
       "scheme": 50,
       "detalle": "Primera parte",
       "categoria": "Actividades"
+    },
+    {
+      "actividad": "Rocket League",
+      "fecha": "",
+      "prolog": 90,
+      "scheme": 60,
+      "detalle": "1° LosMascapitos (Prolog) · 2° Quevuelvannuestrasex (Scheme) · 3° semifinalistas Tilinosaurios / Los Puritanos (Scheme)",
+      "categoria": "Videojuegos"
+    },
+    {
+      "actividad": "LoL",
+      "fecha": "",
+      "prolog": 45,
+      "scheme": 105,
+      "detalle": "1° SALVADORSAHUR67 (Scheme) · 2° LOS PIE YETI (Prolog) · 3° LOS SAC 2 (Scheme)",
+      "categoria": "Videojuegos"
     }
   ],
   "juegos": [
@@ -583,19 +599,137 @@
       "nota": "Jugadores anonimizados: P = Prolog, S = Scheme."
     },
     {
-      "nombre": "FC26",
-      "estado": "Por jugar",
-      "podio": [],
-      "partidas": []
-    },
-    {
       "nombre": "LoL",
-      "estado": "Por jugar",
-      "podio": [],
-      "partidas": []
+      "estado": "Terminado",
+      "podio": [
+        {
+          "equipo": "SALVADORSAHUR67",
+          "alianza": "Scheme"
+        },
+        {
+          "equipo": "LOS PIE YETI",
+          "alianza": "Prolog"
+        },
+        {
+          "equipo": "LOS SAC 2",
+          "alianza": "Scheme"
+        }
+      ],
+      "rondas": [
+        {
+          "titulo": "Semifinal",
+          "partidas": [
+            {
+              "a": "SALVADORSAHUR67",
+              "aliA": "Scheme",
+              "b": "LOS SAC 2",
+              "aliB": "Scheme",
+              "resultado": "pasa SALVADORSAHUR67"
+            }
+          ]
+        },
+        {
+          "titulo": "Gran final",
+          "partidas": [
+            {
+              "a": "LOS PIE YETI",
+              "aliA": "Prolog",
+              "b": "SALVADORSAHUR67",
+              "aliB": "Scheme",
+              "resultado": "🏆 SALVADORSAHUR67"
+            }
+          ]
+        }
+      ],
+      "nota": "LOS PIE YETI llegó a la final por la llave inferior, definida por resolución disciplinaria."
     },
     {
       "nombre": "Rocket League",
+      "estado": "Terminado",
+      "podio": [
+        {
+          "equipo": "LosMascapitos",
+          "alianza": "Prolog"
+        },
+        {
+          "equipo": "Quevuelvannuestrasex",
+          "alianza": "Scheme"
+        },
+        {
+          "equipo": "Tilinosaurios / Los Puritanos",
+          "alianza": "Scheme"
+        }
+      ],
+      "rondas": [
+        {
+          "titulo": "Primera ronda",
+          "partidas": [
+            {
+              "a": "Quevuelvannuestrasex",
+              "aliA": "Scheme",
+              "b": "Ajos",
+              "aliB": "Scheme",
+              "resultado": "pasa Quevuelvannuestrasex"
+            },
+            {
+              "a": "Leyendas Infrasónicas",
+              "aliA": "Prolog",
+              "b": "Tilinosaurios",
+              "aliB": "Scheme",
+              "resultado": "pasa Tilinosaurios"
+            },
+            {
+              "a": "WaifuEnjoyer",
+              "aliA": "Prolog",
+              "b": "Los Puritanos",
+              "aliB": "Scheme",
+              "resultado": "pasa Los Puritanos"
+            },
+            {
+              "a": "LosMascapitos",
+              "aliA": "Prolog",
+              "b": "Bros",
+              "aliB": "Scheme",
+              "resultado": "pasa LosMascapitos"
+            }
+          ]
+        },
+        {
+          "titulo": "Semifinales",
+          "partidas": [
+            {
+              "a": "Quevuelvannuestrasex",
+              "aliA": "Scheme",
+              "b": "Tilinosaurios",
+              "aliB": "Scheme",
+              "resultado": "pasa Quevuelvannuestrasex"
+            },
+            {
+              "a": "Los Puritanos",
+              "aliA": "Scheme",
+              "b": "LosMascapitos",
+              "aliB": "Prolog",
+              "resultado": "pasa LosMascapitos"
+            }
+          ]
+        },
+        {
+          "titulo": "Final",
+          "partidas": [
+            {
+              "a": "Quevuelvannuestrasex",
+              "aliA": "Scheme",
+              "b": "LosMascapitos",
+              "aliB": "Prolog",
+              "resultado": "🏆 LosMascapitos"
+            }
+          ]
+        }
+      ],
+      "nota": "No hubo partido por el 3er lugar: los dos semifinalistas eliminados son de Scheme, así que el 3° suma para Scheme."
+    },
+    {
+      "nombre": "FC26",
       "estado": "Por jugar",
       "podio": [],
       "partidas": []
