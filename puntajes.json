@@ -219,9 +219,9 @@
     {
       "actividad": "Tenis",
       "fecha": "",
-      "prolog": 50,
+      "prolog": 0,
       "scheme": 150,
-      "detalle": "Gana Scheme",
+      "detalle": "Gana Scheme por default (Prolog no se presentó)",
       "categoria": "Deportes"
     }
   ],
